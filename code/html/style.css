@@ -1,0 +1,63 @@
+body {
+  color: white;
+
+  background: black;
+  font-family: "Open Sans", sans-serif;
+
+  /* background-image: url("https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/EMAG_logo.svg/1200px-EMAG_logo.svg.png");
+  background-size: contain;
+  background-repeat: repeat-y; */
+}
+
+/* #div1 {
+  width: 100vw;
+  height: 100vh;
+  background-image: url("https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/EMAG_logo.svg/1200px-EMAG_logo.svg.png");
+} */
+
+/* #div2 {
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.9);
+} */
+
+main {
+  backdrop-filter: blur(50%);
+}
+
+th {
+  color: rgb(79, 79, 215);
+  border: 2px solid rgb(119, 119, 248);
+}
+
+td {
+  color: rgb(255, 255, 255);
+  border: 2px solid rgb(168, 168, 248);
+}
+
+div ~ p {
+  color: red;
+}
+
+nav {
+  width: 100px;
+  /* padding: 50px; */
+  /* margin: 20px; */
+  background-color: #085ad4;
+  margin-left: auto;
+  margin-right: auto;
+  /* top: unset; */
+  /* left: 10px; */
+}
+
+nav::before {
+  content: "This is desktop";
+  font-size: 30px;
+  color: yellow;
+}
+
+@media (max-width: 500px) {
+  nav::before {
+    content: "This is a phone";
+  }
+}
