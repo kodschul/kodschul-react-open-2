@@ -1,28 +1,43 @@
 import { useEffect, useState } from "react";
 
 const UseEffectApp = () => {
-  const [username, setUsername] = useState("mike");
+  const [username, setUsername] = useState("");
   const [usernameText, setUsernameText] = useState("");
 
   let x = 5;
 
-  // fired on every re-render
   useEffect(() => {
-    console.log("Updated!");
-    x += 2;
+    let timerId = setInterval(() => {
+      // logic
+      setUsernameText("a");
+    }, 500);
 
-    console.log(x);
-  });
-
-  // fired on load
-  useEffect(() => {
-    console.log("Welcome!");
+    return () => {
+      clearInterval(timerId);
+    };
   }, []);
 
-  // fired on username changed
   useEffect(() => {
-    console.log("Send a GET request to API", { username });
+    console.log("user changed to:", username);
   }, [username]);
+
+  // // fired on every re-render
+  // useEffect(() => {
+  //   console.log("Updated!");
+  //   x += 2;
+
+  //   console.log(x);
+  // });
+
+  // // fired on load
+  // useEffect(() => {
+  //   console.log("Welcome!");
+  // }, []);
+
+  // // fired on username changed
+  // useEffect(() => {
+  //   console.log("Send a GET request to API", { username });
+  // }, [username]);
 
   return (
     <div style={styles.main}>

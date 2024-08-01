@@ -1,0 +1,13 @@
+{
+  "scripts": {
+    "tsc": "tsc",
+    "watch": "tsc -W",
+    "build": "tsc",
+    "check:types": "tsc --noEmit",
+    "ts-node": "ts-node"
+  },
+  "dependencies": {
+    "ts-node": "^10.9.2",
+    "typescript": "^5.5.4"
+  }
+}

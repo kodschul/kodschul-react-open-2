@@ -1,8 +1,8 @@
-function add(x: number, y: number): number {
-  return x + y;
+function add<InputType>(x: InputType, y: InputType): any {
+  console.log(x, y);
 }
 
-let result: number = add(5, 10);
+let result: number = add<number>(5, 10);
 
 interface IAnimal {
   name: string;
@@ -33,3 +33,14 @@ class Dog extends Animal implements IDog {
 
 let dog = new Animal("Bello");
 dog.speak();
+
+function abc() {}
+
+enum Status {
+  ACTIVE,
+  INACTIVE,
+  PREPARING,
+  TEST,
+}
+
+let aStatus: Status = Status.ACTIVE;

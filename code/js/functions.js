@@ -16,7 +16,9 @@ let max = { name: "Max", age: 30 };
 let alice = { name: "Alice", age: 25 };
 
 let calculator = {
+  x: 0,
   add: function (a, b) {
+    this.x = 10;
     return a + b;
   },
   subtract: function (a, b) {

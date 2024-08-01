@@ -5,10 +5,15 @@ let isTrue: boolean = true;
 
 let fruits: string[] = ["Apfel", "Banane", "Orange"];
 
-let fruitsNumbers = ["string", 10];
+let arr: number[] = [1, 2, 4];
+
+let fruitsNumbers = ["string", 10, 1];
+
+let xyz: number = 124;
 
 type Person = {
   name: string;
+  /** When were you born? */
   age: number;
   isStudent?: boolean;
 };
@@ -18,6 +23,8 @@ interface Student extends Person {
 }
 
 let person: Person = { name: "Max", age: 30 };
+
+console.log(person.isStudent?.toString());
 let person2: Person | undefined = { name: "Max", age: 30, isStudent: true };
 let person3: Student = { studentId: 100, ...person };
 

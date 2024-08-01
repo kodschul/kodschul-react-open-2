@@ -1,0 +1,7 @@
+.main {
+  background-color: orange;
+  height: 99.5vh;
+  width: 100vw;
+  overflow: hidden;
+  overflow-y: hidden;
+}

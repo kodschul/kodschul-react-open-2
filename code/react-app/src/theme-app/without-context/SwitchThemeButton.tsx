@@ -1,7 +1,4 @@
-import { useTheme } from "./theme-done";
-
-const SwitchThemeButton = () => {
-  const { isDark, setDark } = useTheme();
+const SwitchThemeButton = ({ isDark, setDark }) => {
   return (
     <button onClick={() => setDark(!isDark)}>
       {isDark ? "Switch lights on" : "Switch lights off"}

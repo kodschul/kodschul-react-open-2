@@ -4,6 +4,17 @@ for (const index in cars) {
   console.log(cars[index]);
 }
 
+let z = 10;
+for (const car of cars) {
+  console.log(car);
+  z = 11;
+}
+
+cars.forEach(async (car) => {
+  await console.log(car);
+});
+console.log(z);
+
 let i = 10;
 while (i < 5) {
   console.log("Iteration " + i);

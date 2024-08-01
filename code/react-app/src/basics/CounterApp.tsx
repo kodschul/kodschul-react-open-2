@@ -1,25 +1,82 @@
-import { useState } from "react";
+import React, { useEffect, useState } from "react";
+import css from "./CounterApp.module.css";
+import "./CounterApp.css";
+
+let timerId: any = null;
 
 const CounterApp = () => {
-  const [count, setCount] = useState(0);
+  const [counter, setCounter] = useState(10);
 
   const countUp = () => {
-    setCount(count + 1);
+    setCounter((counter) => counter + 1);
+    console.log("up: ", counter);
+  };
+  const countDown = () => {
+    setCounter((counter) => counter - 1);
+    console.log("down: ", counter);
   };
 
-  const countDown = () => {
-    setCount(count - 1);
-  };
+  // useEffect(() => {
+  //   timerId = setInterval(() => {
+  //     countDown();
+  //     console.log("count up");
+  //   }, 1000);
+
+  //   return () => {
+  //     console.log("CLEAR_TIMER");
+  //     clearInterval(timerId);
+  //   };
+  // }, []);
+
+  // useEffect(() => {
+  //   if (counter == 0 && timerId) {
+  //     clearInterval(timerId);
+  //     timerId = null;
+  //   }
+  // }, [counter]);
+
+  // useEffect(() => {
+  //   let timerId = setInterval(() => {
+  //     countUp();
+  //     console.log("count up");
+  //   }, 1000);
+
+  //   return () => {
+  //     console.log("CLEAR_TIMER");
+  //     clearInterval(timerId);
+  //   };
+  // });
+
+  useEffect(() => {
+    if (counter === 0) {
+      return;
+    }
+
+    let timerId = setInterval(() => {
+      countDown();
+      console.log("count up");
+    }, 1000);
+
+    return () => {
+      console.log("CLEAR_TIMER");
+      clearInterval(timerId);
+    };
+  }, [counter]);
 
   return (
-    <div style={styles.main}>
+    <div
+      style={{
+        ...styles.main,
+        // background: isActive ? styles.main.background : "red",
+      }}
+    >
       <h1>Counter App</h1>
 
       <div style={styles.btn} onClick={countUp}>
         +
       </div>
 
-      <h2>{count}</h2>
+      <h2>{counter}</h2>
 
       <div style={styles.btn} onClick={countDown}>
         -

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const TodoApp = () => {
   const [todoText, setTodoText] = useState("");
@@ -6,6 +6,16 @@ const TodoApp = () => {
   // logic
 
   //   const updateTodoText
+
+  useEffect(() => {
+    let _array: string[] = [];
+
+    for (let i = 0; i < 10000; i++) {
+      _array.push(i.toString());
+    }
+
+    setTodos(_array);
+  }, []);
 
   const clearInput = () => {
     setTodoText("");
@@ -18,6 +28,14 @@ const TodoApp = () => {
 
     setTodos([...todos, todoText]);
     clearInput();
+  };
+
+  const addToDoOnEnter = (e) => {
+    if (e.code !== "Enter") {
+      return;
+    }
+
+    addTodo();
   };
 
   const deleteTodo = (todo) => {
@@ -52,6 +70,8 @@ const TodoApp = () => {
             placeholder="Enter To-do"
             style={styles.input}
             value={todoText}
+            onKeyDown={addToDoOnEnter}
+            // enterKeyHint=""
             onChange={(e) => setTodoText(e.target.value)}
           />{" "}
           <p>You are typing: {todoText} </p>
@@ -69,7 +89,7 @@ const TodoApp = () => {
 
 const styles: any = {
   main: {
-    height: "100vh",
+    minHeight: "100vh",
     width: "100vw",
     color: "white",
     background: "rgb(0, 0, 46)",

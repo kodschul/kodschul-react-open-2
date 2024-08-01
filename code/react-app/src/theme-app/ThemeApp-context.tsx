@@ -1,8 +1,11 @@
-import { useState } from "react";
-import { useTheme, ThemeContext } from "./theme";
+import { useEffect, useState, createContext, useContext } from "react";
+import SwitchThemeButton from "./SwitchThemeButton";
+import CardContent from "./CardContent";
+import { ThemeContext } from "./theme-done";
 
-const MyApp = () => {
-  const theme = useTheme();
+const ThemeApp = () => {
+  const theme = useContext(ThemeContext);
+
   return (
     <div
       style={{
@@ -11,8 +14,9 @@ const MyApp = () => {
       }}
     >
       <h1>Theme App</h1>
-
+      <CardContent />
       <p>Theme: {theme.isDark ? "Dark Mode" : "Light Mode"}</p>
+      <SwitchThemeButton />
     </div>
   );
 };
@@ -21,11 +25,12 @@ const App = () => {
   const [isDark, setDark] = useState(true);
 
   return (
-    <>
-      <ThemeContext.Provider value={{ isDark, setDark }}>
-        <MyApp />
-      </ThemeContext.Provider>
-    </>
+    <ThemeContext.Provider value={{ isDark: isDark, setDark: setDark }}>
+      <ThemeContext.Consumer>
+        {(value) => <div> {value.isDark ? "DARK MODE" : "LIGHT MODE"} </div>}
+      </ThemeContext.Consumer>
+      <ThemeApp />
+    </ThemeContext.Provider>
   );
 };
 
