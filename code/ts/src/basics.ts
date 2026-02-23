@@ -7,12 +7,12 @@ let fruits: string[] = ["Apfel", "Banane", "Orange"];
 
 let arr: number[] = [1, 2, 4];
 
-let fruitsNumbers = ["string", 10, 1];
+let fruitsNumbers: (string | number)[] = ["string", 10, 1];
 
 let xyz: number = 124;
 
 type Person = {
-  name: string;
+  readonly name: string;
   /** When were you born? */
   age: number;
   isStudent?: boolean;
@@ -23,6 +23,8 @@ interface Student extends Person {
 }
 
 let person: Person = { name: "Max", age: 30 };
+
+person.name = "Eva";
 
 console.log(person.isStudent?.toString());
 let person2: Person | undefined = { name: "Max", age: 30, isStudent: true };

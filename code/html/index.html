@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <button onclick="handleSetLight()">
+        Set Light
+    </button>
+    <button onclick="reset()">
+        Reset
+    </button>
+    <div id="div" style="width: 100vw;height: 100vh; background-color: red;">
+
+        <h1 id="title">This is the title</h1>
+    </div>
+
+</body>
+
+<script>
+
+    let bgColor = "red";
+    let titleText = "this is text";
+
+
+
+    function handleSetLight() {
+        document.getElementById("div").style.backgroundColor = "orange"
+        document.getElementById("title").innerHTML = "New title"
+    }
+
+    function reset() {
+        document.getElementById("div").style.backgroundColor = "red"
+        document.getElementById("title").innerHTML = "This is the title"
+    }
+</script>
+
+</html>

@@ -1,14 +1,24 @@
 let cars = ["bmw", "benz", "vw"];
 
+let carsObjs = [
+  { name: "bmw", year: 2010 },
+  { name: "benz", year: 2015 },
+  { name: "vw", year: 2020 },
+];
+
 for (const index in cars) {
-  console.log(cars[index]);
+  cars[index] = cars[index].toUpperCase();
 }
+console.log(cars);
 
 let z = 10;
 for (const car of cars) {
-  console.log(car);
+  car.name = car.toUpperCase();
+
+  // console.log(car.name, car.year);
   z = 11;
 }
+console.log(carsObjs);
 
 cars.forEach(async (car) => {
   await console.log(car);
