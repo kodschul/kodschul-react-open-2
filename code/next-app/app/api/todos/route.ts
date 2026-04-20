@@ -32,7 +32,10 @@ export async function DELETE(request: NextRequest) {
 
   const index = todos.findIndex((t) => t.id === id);
   if (index === -1) {
-    return NextResponse.json({ error: "Todo nicht gefunden." }, { status: 404 });
+    return NextResponse.json(
+      { error: "Todo nicht gefunden." },
+      { status: 404 }
+    );
   }
 
   todos.splice(index, 1);

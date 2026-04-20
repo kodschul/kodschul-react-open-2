@@ -85,7 +85,9 @@ export function TodoApp() {
             >
               <span
                 onClick={() => toggleTodo(todo.id)}
-                className={`cursor-pointer ${todo.done ? "line-through text-gray-400" : ""}`}
+                className={`cursor-pointer ${
+                  todo.done ? "line-through text-gray-400" : ""
+                }`}
               >
                 {todo.text}
               </span>

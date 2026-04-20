@@ -13,7 +13,10 @@
 // ============================================================
 
 import { useEffect } from "react";
-import { useAppDispatch, useAppSelector } from "../02-redux-toolkit/schritt-1-store";
+import {
+  useAppDispatch,
+  useAppSelector,
+} from "../02-redux-toolkit/schritt-1-store";
 import {
   fetchCharacters,
   selectCharacters,

@@ -59,7 +59,7 @@ function KanbanCard({ card }: { card: Card }) {
 
 // ── KanbanColumn: Drop-Zone für eine Spalte ───────────────────
 type KanbanColumnProps = {
-  column: typeof COLUMNS[number];
+  column: (typeof COLUMNS)[number];
   cards: Card[];
   onDrop: (cardId: number, toColumn: Column) => void;
 };

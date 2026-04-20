@@ -103,7 +103,10 @@ export function FavoritesBox() {
       ) : (
         <div className="flex flex-wrap gap-2">
           {favorites.map((fav) => (
-            <span key={fav.id} className="bg-white rounded-full px-3 py-1 text-sm shadow-sm">
+            <span
+              key={fav.id}
+              className="bg-white rounded-full px-3 py-1 text-sm shadow-sm"
+            >
               {fav.name}
             </span>
           ))}

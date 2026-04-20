@@ -19,7 +19,13 @@
 // ============================================================
 
 import { useAppDispatch, useAppSelector } from "./schritt-1-store";
-import { addTodo, removeTodo, toggleTodo, selectTodos, selectCompletedCount } from "./schritt-2-slice";
+import {
+  addTodo,
+  removeTodo,
+  toggleTodo,
+  selectTodos,
+  selectCompletedCount,
+} from "./schritt-2-slice";
 import { useState } from "react";
 
 // ── Counter mit Redux ─────────────────────────────────────────
@@ -86,7 +92,9 @@ export function TodoListRedux() {
           >
             <span
               onClick={() => dispatch(toggleTodo(todo.id))}
-              className={`cursor-pointer ${todo.done ? "line-through text-gray-400" : ""}`}
+              className={`cursor-pointer ${
+                todo.done ? "line-through text-gray-400" : ""
+              }`}
             >
               {todo.text}
             </span>

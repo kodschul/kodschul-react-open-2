@@ -53,8 +53,8 @@ import { useEffect, useState } from "react";
 export default function CharactersReduxPage() {
   // TODO: useAppDispatch und useAppSelector nutzen
   const [characters] = useState([]); // ← durch Redux ersetzen
-  const loading = false;             // ← durch Redux ersetzen
-  const error = null;                // ← durch Redux ersetzen
+  const loading = false; // ← durch Redux ersetzen
+  const error = null; // ← durch Redux ersetzen
 
   // TODO: useEffect → dispatch(fetchCharacters(1))
 
@@ -81,15 +81,24 @@ export default function CharactersReduxPage() {
         Charaktere (Redux State)
       </h1>
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 px-6">
-        {characters.map((c: { id: number; name: string; status: string; image: string }) => (
-          <div key={c.id} className="bg-white rounded-xl shadow overflow-hidden">
-            <img src={c.image} alt={c.name} className="w-full aspect-square object-cover" />
-            <div className="p-3">
-              <p className="font-semibold text-sm">{c.name}</p>
-              <p className="text-xs text-gray-500">{c.status}</p>
+        {characters.map(
+          (c: { id: number; name: string; status: string; image: string }) => (
+            <div
+              key={c.id}
+              className="bg-white rounded-xl shadow overflow-hidden"
+            >
+              <img
+                src={c.image}
+                alt={c.name}
+                className="w-full aspect-square object-cover"
+              />
+              <div className="p-3">
+                <p className="font-semibold text-sm">{c.name}</p>
+                <p className="text-xs text-gray-500">{c.status}</p>
+              </div>
             </div>
-          </div>
-        ))}
+          )
+        )}
       </div>
     </div>
   );

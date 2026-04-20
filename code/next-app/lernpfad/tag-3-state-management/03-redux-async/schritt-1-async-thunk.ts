@@ -31,7 +31,7 @@ type Character = {
 
 type CharactersState = {
   items: Character[];
-  loading: boolean;   // true = lädt gerade
+  loading: boolean; // true = lädt gerade
   error: string | null; // null = kein Fehler
 };
 
@@ -94,7 +94,9 @@ const charactersSlice = createSlice({
 // Selectors
 import type { RootState } from "./schritt-1-store";
 export const selectCharacters = (state: RootState) => state.characters.items;
-export const selectCharactersLoading = (state: RootState) => state.characters.loading;
-export const selectCharactersError = (state: RootState) => state.characters.error;
+export const selectCharactersLoading = (state: RootState) =>
+  state.characters.loading;
+export const selectCharactersError = (state: RootState) =>
+  state.characters.error;
 
 export default charactersSlice.reducer;

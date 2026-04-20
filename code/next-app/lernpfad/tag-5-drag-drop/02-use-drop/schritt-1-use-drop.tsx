@@ -75,7 +75,10 @@ export function FavoritesZone({ onDrop, favorites }: FavoritesZoneProps) {
       ) : (
         <div className="grid grid-cols-2 gap-2">
           {favorites.map((fav) => (
-            <div key={fav.id} className="bg-white rounded-lg p-2 text-sm shadow-sm">
+            <div
+              key={fav.id}
+              className="bg-white rounded-lg p-2 text-sm shadow-sm"
+            >
               {fav.name}
             </div>
           ))}
@@ -87,7 +90,9 @@ export function FavoritesZone({ onDrop, favorites }: FavoritesZoneProps) {
         <p className="text-green-500 text-xs text-center mt-2">Hier ablegen!</p>
       )}
       {isOver && !canDrop && (
-        <p className="text-red-400 text-xs text-center mt-2">Bereits in Favoriten</p>
+        <p className="text-red-400 text-xs text-center mt-2">
+          Bereits in Favoriten
+        </p>
       )}
     </div>
   );

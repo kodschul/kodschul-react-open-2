@@ -62,7 +62,8 @@ export default function Tag1Demo() {
           Tag 1 – API Routes Demo
         </h1>
         <p className="text-gray-500 mb-8 text-sm">
-          GET · POST · DELETE  |  Route: <code className="bg-gray-100 px-1 rounded">/api/todos</code>
+          GET · POST · DELETE | Route:{" "}
+          <code className="bg-gray-100 px-1 rounded">/api/todos</code>
         </p>
 
         {/* Formular → POST /api/todos */}

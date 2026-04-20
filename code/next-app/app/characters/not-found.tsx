@@ -9,7 +9,8 @@ export default function NotFound() {
           Charakter nicht gefunden
         </h2>
         <p className="text-gray-500 mb-6">
-          Dieser Charakter existiert nicht oder wurde aus dem Universum entfernt.
+          Dieser Charakter existiert nicht oder wurde aus dem Universum
+          entfernt.
         </p>
         <Link
           href="/characters"

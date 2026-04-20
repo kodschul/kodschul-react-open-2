@@ -32,7 +32,9 @@ type CharacterCardDraggableProps = {
   character: Character;
 };
 
-export function CharacterCardDraggable({ character }: CharacterCardDraggableProps) {
+export function CharacterCardDraggable({
+  character,
+}: CharacterCardDraggableProps) {
   // ── useDrag ────────────────────────────────────────────────
   const [{ isDragging }, drag] = useDrag({
     // type: welcher Item-Type ist das? Drop-Zones reagieren darauf

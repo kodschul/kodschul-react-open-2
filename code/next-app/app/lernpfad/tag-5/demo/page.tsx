@@ -23,12 +23,42 @@ type Character = { id: number; name: string; status: string; image: string };
 
 // Statische Demo-Daten (kein API-Aufruf nötig für die Demo)
 const DEMO_CHARACTERS: Character[] = [
-  { id: 1, name: "Rick Sanchez", status: "Alive", image: "https://rickandmortyapi.com/api/character/avatar/1.jpeg" },
-  { id: 2, name: "Morty Smith", status: "Alive", image: "https://rickandmortyapi.com/api/character/avatar/2.jpeg" },
-  { id: 3, name: "Summer Smith", status: "Alive", image: "https://rickandmortyapi.com/api/character/avatar/3.jpeg" },
-  { id: 4, name: "Beth Smith", status: "Alive", image: "https://rickandmortyapi.com/api/character/avatar/4.jpeg" },
-  { id: 5, name: "Jerry Smith", status: "Alive", image: "https://rickandmortyapi.com/api/character/avatar/5.jpeg" },
-  { id: 6, name: "Abadango Cluster", status: "Alive", image: "https://rickandmortyapi.com/api/character/avatar/6.jpeg" },
+  {
+    id: 1,
+    name: "Rick Sanchez",
+    status: "Alive",
+    image: "https://rickandmortyapi.com/api/character/avatar/1.jpeg",
+  },
+  {
+    id: 2,
+    name: "Morty Smith",
+    status: "Alive",
+    image: "https://rickandmortyapi.com/api/character/avatar/2.jpeg",
+  },
+  {
+    id: 3,
+    name: "Summer Smith",
+    status: "Alive",
+    image: "https://rickandmortyapi.com/api/character/avatar/3.jpeg",
+  },
+  {
+    id: 4,
+    name: "Beth Smith",
+    status: "Alive",
+    image: "https://rickandmortyapi.com/api/character/avatar/4.jpeg",
+  },
+  {
+    id: 5,
+    name: "Jerry Smith",
+    status: "Alive",
+    image: "https://rickandmortyapi.com/api/character/avatar/5.jpeg",
+  },
+  {
+    id: 6,
+    name: "Abadango Cluster",
+    status: "Alive",
+    image: "https://rickandmortyapi.com/api/character/avatar/6.jpeg",
+  },
 ];
 
 // ── Draggable Character Card ──────────────────────────────────
@@ -78,11 +108,12 @@ function FavoritesZone({
     }),
   });
 
-  const highlight = isOver && canDrop
-    ? "border-green-400 bg-green-50 scale-[1.01]"
-    : isOver && !canDrop
-    ? "border-red-400 bg-red-50"
-    : "border-dashed border-gray-300";
+  const highlight =
+    isOver && canDrop
+      ? "border-green-400 bg-green-50 scale-[1.01]"
+      : isOver && !canDrop
+      ? "border-red-400 bg-red-50"
+      : "border-dashed border-gray-300";
 
   return (
     <div
@@ -107,7 +138,11 @@ function FavoritesZone({
               key={fav.id}
               className="flex items-center gap-1 bg-white rounded-full px-3 py-1 shadow-sm text-sm"
             >
-              <img src={fav.image} alt={fav.name} className="w-5 h-5 rounded-full" />
+              <img
+                src={fav.image}
+                alt={fav.name}
+                className="w-5 h-5 rounded-full"
+              />
               <span>{fav.name}</span>
               <button
                 onClick={() => onRemove(fav.id)}
@@ -121,7 +156,11 @@ function FavoritesZone({
       )}
 
       {isOver && (
-        <p className={`text-xs text-center mt-2 ${canDrop ? "text-green-500" : "text-red-400"}`}>
+        <p
+          className={`text-xs text-center mt-2 ${
+            canDrop ? "text-green-500" : "text-red-400"
+          }`}
+        >
           {canDrop ? "Hier ablegen!" : "Bereits in Favoriten"}
         </p>
       )}

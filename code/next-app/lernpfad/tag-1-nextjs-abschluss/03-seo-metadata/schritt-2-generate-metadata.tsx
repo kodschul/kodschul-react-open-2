@@ -84,8 +84,14 @@ export default async function CharacterDetailPage({
   return (
     <div className="p-8">
       <h1 className="text-3xl font-bold">{character.name}</h1>
-      <p>{character.status} – {character.species}</p>
-      <img src={character.image} alt={character.name} className="rounded-lg mt-4" />
+      <p>
+        {character.status} – {character.species}
+      </p>
+      <img
+        src={character.image}
+        alt={character.name}
+        className="rounded-lg mt-4"
+      />
     </div>
   );
 }

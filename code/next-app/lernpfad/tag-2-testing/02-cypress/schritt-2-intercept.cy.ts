@@ -40,17 +40,13 @@ describe("Characters mit API-Mock", () => {
 
   it("zeigt Lade-Indikator während der Request läuft", () => {
     // Antwort verzögern um Lade-Zustand zu testen
-    cy.intercept(
-      "GET",
-      "https://rickandmortyapi.com/api/character*",
-      (req) => {
-        // 500ms Verzögerung simulieren
-        req.reply((res) => {
-          res.setDelay(500);
-          res.fixture("characters.json");
-        });
-      }
-    );
+    cy.intercept("GET", "https://rickandmortyapi.com/api/character*", (req) => {
+      // 500ms Verzögerung simulieren
+      req.reply((res) => {
+        res.setDelay(500);
+        res.fixture("characters.json");
+      });
+    });
 
     cy.visit("http://localhost:3000/characters");
 

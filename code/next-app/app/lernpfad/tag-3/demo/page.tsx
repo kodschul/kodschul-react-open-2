@@ -3,7 +3,13 @@
 import { Provider } from "react-redux";
 import { store, useAppDispatch, useAppSelector } from "./store";
 import { increment, decrement, reset, selectCount } from "./counterSlice";
-import { addTodo, removeTodo, toggleTodo, selectTodos, selectCompletedCount } from "./todoSlice";
+import {
+  addTodo,
+  removeTodo,
+  toggleTodo,
+  selectTodos,
+  selectCompletedCount,
+} from "./todoSlice";
 import { useState } from "react";
 
 // ── Counter Component ────────────────────────────────────────
@@ -74,7 +80,9 @@ function TodoList() {
         </button>
       </form>
       {todos.length === 0 ? (
-        <p className="text-gray-400 text-sm text-center py-4">Noch keine Todos</p>
+        <p className="text-gray-400 text-sm text-center py-4">
+          Noch keine Todos
+        </p>
       ) : (
         <ul className="space-y-2">
           {todos.map((todo) => (
@@ -84,7 +92,9 @@ function TodoList() {
             >
               <span
                 onClick={() => dispatch(toggleTodo(todo.id))}
-                className={`cursor-pointer ${todo.done ? "line-through text-gray-400" : ""}`}
+                className={`cursor-pointer ${
+                  todo.done ? "line-through text-gray-400" : ""
+                }`}
               >
                 {todo.text}
               </span>
