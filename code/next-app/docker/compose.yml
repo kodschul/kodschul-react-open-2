@@ -1,0 +1,15 @@
+services:
+  app:
+    image: next-app:v1
+    build:
+      context: ../
+      dockerfile: docker/Dockerfile
+
+    command: npm run dev
+
+    ports:
+      - 8080:3000
+
+  sidecar:
+    image: busybox
+    command: sleep -s 10000s

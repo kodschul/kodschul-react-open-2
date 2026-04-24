@@ -15,15 +15,13 @@ test.describe("TodoItem", () => {
     const pageId = "todos-item--primary";
 
     await page.goto(`http://localhost:6006/iframe.html?id=${pageId}`, {
-      waitUntil: "load",
+      waitUntil: "networkidle",
     });
-
-    await page.waitForLoadState("networkidle");
 
     expect(await page.screenshot({ animations: "disabled" })).toMatchSnapshot();
   });
 
-  // test.describe("primary", async () => {
-  //   await testStory("todos-item--primary");
-  // });
+  test.describe("secondary", async () => {
+    await testStory("todos-item--secondary");
+  });
 });
