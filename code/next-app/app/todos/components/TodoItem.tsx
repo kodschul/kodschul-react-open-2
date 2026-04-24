@@ -25,6 +25,8 @@ const TodoItem = (props: TodoItemProps) => {
         fontWeight: "semibold",
         marginTop: 10,
         textDecoration: isDone ? "line-through" : "",
+        backgroundColor: "yellow",
+        padding: 200,
       }}
       onClick={markAsDone}
     >

@@ -7,7 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "test": "jest"
+    "test": "jest",
+    "storybook": "storybook dev -p 6006",
+    "test:e2e": "playwright test --config playwright.config.ts"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.11.2",
@@ -22,6 +24,13 @@
     "zustand": "^5.0.12"
   },
   "devDependencies": {
+    "@chromatic-com/storybook": "^5.1.2",
+    "@playwright/test": "^1.59.1",
+    "@storybook/addon-a11y": "^10.3.5",
+    "@storybook/addon-docs": "^10.3.5",
+    "@storybook/addon-onboarding": "^10.3.5",
+    "@storybook/addon-vitest": "^10.3.5",
+    "@storybook/nextjs-vite": "^10.3.5",
     "@tailwindcss/postcss": "^4",
     "@testing-library/dom": "^10.4.1",
     "@testing-library/jest-dom": "^6.9.1",
@@ -31,13 +40,22 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "@vitest/browser-playwright": "^4.1.5",
+    "@vitest/coverage-v8": "^4.1.5",
+    "chromatic": "^16.6.0",
     "cypress": "^15.14.1",
     "eslint": "^9",
     "eslint-config-next": "16.2.4",
+    "eslint-plugin-storybook": "^10.3.5",
     "jest": "^30.3.0",
     "jest-environment-jsdom": "^30.3.0",
+    "playwright": "^1.59.1",
+    "servor": "^4.0.2",
+    "storybook": "^10.3.5",
     "tailwindcss": "^4",
     "ts-node": "^10.9.2",
-    "typescript": "^5"
+    "typescript": "^5",
+    "vite": "^8.0.10",
+    "vitest": "^4.1.5"
   }
 }
