@@ -1,14 +1,13 @@
 "use client";
-
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import Link from "next/link";
 
-const api = axios.create({
-  baseURL: "https://rickandmortyapi.com/api",
-});
+// const api = axios.create({
+//   baseURL: "https://rickandmortyapi.com/api",
+// });
 
 type ICharacter = {
   id: number;
@@ -16,15 +15,16 @@ type ICharacter = {
   status: string;
   image: string;
 };
-
 type CharactersPageProps = {
   characters?: ICharacter[];
 };
-
 const fetchCharacters = async (pageToFetch = 1) => {
   //   await new Promise((r) => setTimeout(r, 5000));
-  return (await api.get(`/character?page=${pageToFetch}`))?.data?.results;
+  return (await axios.get(`/api/characters?page=${pageToFetch}`))?.data
+    ?.results;
 };
+
+import { useTranslations } from "next-intl";
 
 const CharactersPage = ({
   characters: initialCharacters,
@@ -41,11 +41,12 @@ const CharactersPage = ({
     // refetchOnReconnect: true,
   });
 
+  const t = useTranslations("characters");
+
   return (
     <div className="h-screen w-screen flex flex-col items-center bg-gray-100 text-black overflow-auto">
       <div className="pt-[5%] text-center">
         <div className="text-3xl font-bold mb-6">The Ricky And Morty API</div>
-
         <div className="flex items-center justify-center gap-4 mb-6">
           <span className="font-semibold">Page: {page}</span>
           <button
@@ -53,13 +54,13 @@ const CharactersPage = ({
             className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors disabled:bg-gray-400"
             disabled={page === 1}
           >
-            Prev page
+            {t(`pagination.prev`)}
           </button>
           <button
             onClick={() => setPage(page + 1)}
             className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors"
           >
-            Next page
+            {t(`pagination.next`)}
           </button>
         </div>
       </div>
@@ -78,7 +79,10 @@ const CharactersPage = ({
               href={`/characters/${character.id}`}
               className="group"
             >
-              <div className="flex flex-col items-center hover:scale-105 transition-transform duration-200">
+              <div
+                data-cy="character-card"
+                className="flex flex-col items-center hover:scale-105 transition-transform duration-200"
+              >
                 <div className="overflow-hidden rounded-lg shadow-lg">
                   <img
                     className="w-50 h-50 object-cover group-hover:opacity-90 transition-opacity"

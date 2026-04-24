@@ -22,7 +22,7 @@ import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
 // Zu testende Komponente (wird in der Demo-Datei definiert)
-import { TodoApp } from "../demo/TodoApp";
+import { TodoApp } from "../../../app/testing/TodoContainer";
 
 describe("TodoApp", () => {
   // userEvent.setup() einmal pro Testblock – nicht pro Test

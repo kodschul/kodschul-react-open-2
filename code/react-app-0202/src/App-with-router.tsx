@@ -8,6 +8,7 @@ import CharacterDetailPage from "./rickmorty/characters/CharacterDetailPage";
 import ThemeApp from "./theme/with-global-state/theme-app";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import FormApp from "./forms/form-app-formik";
+import TodoApp from "./components/todo/todo-app-with-delete";
 
 const queryClient = new QueryClient();
 
@@ -28,6 +29,7 @@ const App = () => {
             <Route path="/characters/:id" Component={CharacterDetailPage} />
             <Route path="/theme" Component={ThemeApp} />
             <Route path="/form" Component={FormApp} />
+            <Route path="/todo" Component={TodoApp} />
           </Routes>
         </BrowserRouter>
       </QueryClientProvider>

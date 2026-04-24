@@ -3,26 +3,19 @@ import { Metadata } from "next";
 import CharacterDetailPage from "./CharacterDetailPage";
 
 const fetchCharacterContent = async (id) => {
-  try {
-    return (
-      await axios.get(
-        process.env.__NEXT_PRIVATE_ORIGIN + `/api/characters/${id}`
-      )
-    )?.data;
-  } catch (e) {
-    return null;
-  }
+  return (await axios.get(`https://rickandmortyapi.com/api/character/${id}`))
+    ?.data;
 };
 
 export const generateMetadata = async ({ params }): Promise<Metadata> => {
   const { id } = await params;
   const character = await fetchCharacterContent(id);
   return {
-    title: character?.name,
-    description: character?.status,
+    title: character.name,
+    description: character.status,
     openGraph: {
       images: {
-        url: character?.image,
+        url: character.image,
       },
     },
   };
@@ -30,8 +23,6 @@ export const generateMetadata = async ({ params }): Promise<Metadata> => {
 
 export default async function CharacterDetailServerPage({ params }) {
   const { id } = await params;
-  console.log({ id });
-
   const character = await fetchCharacterContent(id);
 
   return <CharacterDetailPage character={character} />;

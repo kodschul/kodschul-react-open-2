@@ -1,13 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
-
-const todos: { id: number; text: string; done: boolean }[] = [
-  { id: 1, text: "Next.js API Routes kennenlernen", done: true },
-  { id: 2, text: "BFF-Pattern verstehen", done: false },
-];
-let nextId = 3;
+import todoDb from "./todos";
 
 export async function GET() {
-  return NextResponse.json(todos);
+  return NextResponse.json(todoDb.todos);
 }
 
 export async function POST(request: NextRequest) {
@@ -20,17 +15,18 @@ export async function POST(request: NextRequest) {
     );
   }
 
-  const newTodo = { id: nextId++, text: body.text.trim(), done: false };
-  todos.push(newTodo);
+  const newTodo = { id: todoDb.nextId++, text: body.text.trim(), done: false };
+  todoDb.todos.push(newTodo);
 
   return NextResponse.json(newTodo, { status: 201 });
 }
 
 export async function DELETE(request: NextRequest) {
   const { searchParams } = request.nextUrl;
+
   const id = Number(searchParams.get("id"));
 
-  const index = todos.findIndex((t) => t.id === id);
+  const index = todoDb.todos.findIndex((t) => t.id === id);
   if (index === -1) {
     return NextResponse.json(
       { error: "Todo nicht gefunden." },
@@ -38,6 +34,6 @@ export async function DELETE(request: NextRequest) {
     );
   }
 
-  todos.splice(index, 1);
+  todoDb.todos.splice(index, 1);
   return new NextResponse(null, { status: 204 });
 }

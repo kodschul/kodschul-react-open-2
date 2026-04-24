@@ -12,15 +12,24 @@
 //   ✓ data-cy Attribute für Cypress
 // ============================================================
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 type Todo = { id: number; text: string; done: boolean };
 
-export function TodoApp() {
+export function TodoContainer() {
+  const [loaded, setLoaded] = useState(false);
   const [todos, setTodos] = useState<Todo[]>([]);
   const [input, setInput] = useState("");
   const [error, setError] = useState("");
   let nextId = 1;
+
+  useEffect(() => {
+    setTimeout(() => setLoaded(true), 900);
+  }, []);
+
+  if (!loaded) {
+    return null;
+  }
 
   function addTodo(e: React.FormEvent) {
     e.preventDefault();
@@ -102,14 +111,6 @@ export function TodoApp() {
           ))}
         </ul>
       )}
-    </div>
-  );
-}
-
-export default function TodoAppPage() {
-  return (
-    <div className="min-h-screen bg-gray-50 py-12">
-      <TodoApp />
     </div>
   );
 }

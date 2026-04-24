@@ -35,7 +35,7 @@ export async function GET(request: NextRequest) {
     `https://rickandmortyapi.com/api/character?page=${page}`,
     {
       // Next.js-Erweiterung: Daten für 60 Sekunden cachen, dann neu laden
-      next: { revalidate: 60 },
+      next: { revalidate: 100 },
     }
   );
 

@@ -30,6 +30,6 @@ export async function GET(request: NextRequest) {
   return NextResponse.json({
     page: Number(page),
     totalPages: data.info.pages,
-    characters: simplified,
+    results: simplified,
   });
 }
