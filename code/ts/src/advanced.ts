@@ -1,8 +1,10 @@
-function add<InputType>(x: InputType, y: InputType): any {
-  console.log(x, y);
+function add<T>(x: T, y: T): T {
+  // console.log(x, y);
+  return x + y;
 }
 
-let result: number = add<number>(5, 10);
+let result = add<number>(5, 10);
+let str = add<string>("5", "10");
 
 interface IAnimal {
   name: string;

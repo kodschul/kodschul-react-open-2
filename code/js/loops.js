@@ -6,6 +6,19 @@ let carsObjs = [
   { name: "vw", year: 2020 },
 ];
 
+const fetchACar = async () => new Promise((r) => setTimeout(r, 1000));
+
+for (const car of cars) {
+  await fetchACar();
+}
+
+// cars.forEach(async (car) => {
+//   await fetchACar();
+// });
+console.log("CAME TO THE END");
+
+process.exit(0);
+
 for (const index in cars) {
   cars[index] = cars[index].toUpperCase();
 }
@@ -19,11 +32,6 @@ for (const car of cars) {
   z = 11;
 }
 console.log(carsObjs);
-
-cars.forEach(async (car) => {
-  await console.log(car);
-});
-console.log(z);
 
 let i = 10;
 while (i < 5) {

@@ -49,3 +49,11 @@ let calculator = {
 calculator.add(1, 2);
 
 console.log(3 % 2 == 0);
+
+
+
+
+
+let arr = [1,2,3,4];
+
+let arrSum = sum(arr)

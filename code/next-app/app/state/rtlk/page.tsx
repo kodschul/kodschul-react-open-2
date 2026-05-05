@@ -89,6 +89,10 @@ export default function AppContainerWithRedux() {
       <Provider store={store}>
         <TodoContainer />
       </Provider>
+
+      <Provider store={store}>
+        <TodoContainer />
+      </Provider>
     </>
   );
 }

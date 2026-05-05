@@ -1,0 +1,13 @@
+{
+  "scripts": {
+    "start": "node ./dist/hello.js",
+    "build": "tsc",
+    "watch": "tsc -W",
+    "tsc:init": "tsc --init",
+    "lint": "tsc --noEmit"
+  },
+  "dependencies": {
+    "ts-node": "^10.9.2",
+    "typescript": "^6.0.3"
+  }
+}

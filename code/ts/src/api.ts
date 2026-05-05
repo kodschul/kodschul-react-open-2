@@ -1,5 +1,5 @@
 interface ResponseData {
-  id_v1: string;
+  id_v2: string;
   message: String;
   username: string;
 }

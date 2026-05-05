@@ -15,28 +15,35 @@
     <button onclick="reset()">
         Reset
     </button>
-    <div id="div" style="width: 100vw;height: 100vh; background-color: red;">
+    <div id="div" style="width: 100vw;height: 100vh; background-color: bgColor;">
 
-        <h1 id="title">This is the title</h1>
+        <h1 id="title">titleText</h1>
     </div>
 
 </body>
 
 <script>
 
-    let bgColor = "red";
+    let bgColor = "green";
     let titleText = "this is text";
 
 
 
     function handleSetLight() {
-        document.getElementById("div").style.backgroundColor = "orange"
-        document.getElementById("title").innerHTML = "New title"
+
+        bgColor = "orange";
+        titleText = "New title";
+
+        // $("#div").css("background-color", "orange")
+        // document.getElementById("div").style.backgroundColor = "orange"
+        // document.getElementById("title").innerHTML = "New title"
     }
 
     function reset() {
-        document.getElementById("div").style.backgroundColor = "red"
-        document.getElementById("title").innerHTML = "This is the title"
+        bgColor = "red";
+        titleText = "This is the title";
+        // document.getElementById("div").style.backgroundColor = bgColor;
+        // document.getElementById("title").innerHTML = titleText;
     }
 </script>
 
