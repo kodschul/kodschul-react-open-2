@@ -1,21 +1,8 @@
-let arr = [1, 2, 3, 4];
-let arrWiithItems = [];
+const obj = {
+  name: "abc",
+  age: 20,
+};
 
-for (const item of arr) {
-  arrWiithItems.push(`Item ${item}`);
-}
+const ob2 = { ...obj };
 
-let arrWithItems2 = arr.map((item) => `Item ${item}`);
-
-// console.log(arr, arrWiithItems, arrWithItems2);
-
-let unevenNumsArr = [];
-
-for (const item of arr) {
-  if (item % 2 != 0) {
-    unevenNumsArr.push(item);
-  }
-}
-
-let arr2 = arr.filter((item) => item % 2 == 0);
-console.log(arr, unevenNumsArr, arr2);
+console.log(obj.name == ob2.name);

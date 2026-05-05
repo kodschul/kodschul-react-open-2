@@ -1,27 +1,17 @@
 import { useState } from "react";
+import type { IUserProfile } from "./UserProfile";
+import UserProfile from "./UserProfile";
 
-type IUserProfile = {
-  name: string;
-  bio: string;
+const obj = {
+  name: "abc",
+  age: 20,
 };
 
-interface UserProfileProps extends IUserProfile {
-  onClick: () => void;
-}
-
-function UserProfile(props: UserProfileProps) {
-  const isSmith = props.name == "John Smith";
-  return (
-    <div onClick={props.onClick}>
-      {isSmith ? <h4>John Smith</h4> : <h1>{props.name}</h1>}
-      <p>{props.bio}</p>
-    </div>
-  );
-}
+const ob2 = obj;
 
 function ComponentApp() {
   const [users, setUsers] = useState<IUserProfile[]>([
-    { name: "Eva Smith", bio: "Great!" },
+    { name: "Eva Smith", bio: '<img src="hack.jpg" />' },
     { name: "John Smith", bio: "Great John!" },
     { name: "Max Smith", bio: "Great Eva!" },
     { name: "Marta Smith", bio: "Great Eva!" },
@@ -39,9 +29,15 @@ function ComponentApp() {
           key={user.name}
           name={user.name}
           bio={user.bio}
-          onClick={() =>
-            setUsers(users.filter((item) => item.name !== user.name))
-          }
+          onClick={() => {
+            // users = users.filter((item) => item.name !== user.name);
+
+            // users.push();
+
+            // console.log(users);
+
+            setUsers([...users, { name: "1NEW_NAME", bio: "NEW_BIO" }]);
+          }}
         />
       ))}
       {/* <UserProfile name={users[0].name} bio="Great!" />

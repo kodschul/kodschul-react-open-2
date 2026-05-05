@@ -1,3 +1,4 @@
-let x = number;
-
+{
+  let x = number;
+}
 console.log({ x });
