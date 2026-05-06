@@ -1,3 +1,4 @@
+import "./AutocountApp.css";
 import { useState, useRef, useEffect } from "react";
 
 function AutoCounterApp() {
@@ -40,9 +41,14 @@ function AutoCounterApp() {
   };
 
   return (
-    <div>
+    <div className=" bg-indigo-600 text-white ">
       <div>CounterApp</div>
-      <button onClick={() => setRunning(false)}>Stop</button>
+      <button
+        style={{ backgroundColor: isRunning ? "red" : undefined }}
+        onClick={() => setRunning(false)}
+      >
+        Stop
+      </button>
       <button onClick={() => setRunning(true)}>Play</button>
       <button onClick={inc}>+</button>
       <div>Count: {count}</div>

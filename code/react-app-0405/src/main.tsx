@@ -1,7 +1,7 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./index.css";
-import App from "./use-effect/AutocountApp";
+import App from "./api-app/MainApp";
 
 createRoot(document.getElementById("root")!).render(
   <>
