@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
+import { Link } from "react-router";
 
 type ICharacter = {
   name: string;
@@ -10,18 +11,23 @@ type ICharacter = {
 
 const fetchCharacters = async (pageToFetch, signal) => {
   const res = await axios.get(
-    "https://rickandmortyapi.com/api/character?page=" + pageToFetch,
+    "https://rickandmortyapi.com/api/character----?page=" + pageToFetch,
     { signal }
   );
   return res.data.results;
 };
 
-function CharactersList() {
+function CharactersListPage() {
   const [page, setPage] = useState(1);
 
   const { data: characters, isLoading } = useQuery<ICharacter[]>({
     queryKey: ["characters", page],
     queryFn: ({ signal }) => fetchCharacters(page, signal),
+
+    // staleTime: 600000,
+    // refetchInterval: 3000,
+    // refetchOnReconnect: true,
+    // refetchOnWindowFocus: true,
   });
 
   return (
@@ -45,10 +51,14 @@ function CharactersList() {
       ) : (
         <div className="grid grid-cols-7">
           {characters.map((character) => (
-            <div className="flex flex-col items-center" key={character.id}>
-              {/* <img src={character.image} className="w-24 h-24 " /> */}
+            <Link
+              to={`/characters/${character.id}`}
+              className="flex flex-col items-center"
+              key={character.id}
+            >
+              <img src={character.image} className="w-24 h-24 " />
               <div>{character.name}</div>
-            </div>
+            </Link>
           ))}
         </div>
       )}
@@ -56,4 +66,4 @@ function CharactersList() {
   );
 }
 
-export default CharactersList;
+export default CharactersListPage;

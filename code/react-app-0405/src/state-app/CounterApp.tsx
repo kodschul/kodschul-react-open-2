@@ -8,7 +8,7 @@ function CounterApp() {
   console.log({ renders: redenderCountRef.current });
 
   const inc = () => {
-    setCount(count + 1);
+    setCount(count + 1111);
     console.log("INC");
   };
 
@@ -20,8 +20,8 @@ function CounterApp() {
   return (
     <div>
       <div>CounterApp</div>
-      <button onClick={inc}>+</button>
-      <div>Count 2: {count}</div>
+      <button onClick={inc}>add</button>
+      <div>Count: {count}</div>
       <button onClick={dec}>-</button>
     </div>
   );
@@ -30,7 +30,6 @@ function CounterApp() {
 export default function Component() {
   return (
     <>
-      <CounterApp />
       <CounterApp />
     </>
   );
