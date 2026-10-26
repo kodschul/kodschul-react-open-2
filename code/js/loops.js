@@ -1,5 +1,7 @@
 let cars = ["bmw", "benz", "vw"];
 
+process.exit(0);
+
 let carsObjs = [
   { name: "bmw", year: 2010 },
   { name: "benz", year: 2015 },

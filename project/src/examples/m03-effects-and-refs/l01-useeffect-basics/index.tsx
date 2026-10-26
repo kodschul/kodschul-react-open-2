@@ -30,6 +30,11 @@ const App = () => {
 
   console.log("Render");
 
+  useEffect(() => {
+    document.title = "MY_TITLE ";
+    // document.getElementById("page_title").style.background = "red";
+  }, []);
+
   // Effekt 1: leeres Array, läuft einmal nach dem ersten Render
   useEffect(() => {
     console.log("Effekt 1: Willkommen!");
@@ -48,8 +53,10 @@ const App = () => {
   return (
     <div style={styles.container}>
       {/* React 19 setzt den Seitentitel direkt aus dem Render, ohne Effekt */}
-      <title>{`Counter: ${count1}`}</title>
-      <div style={styles.title}>Effekt-Labor</div>
+      {/* <title>{`Counter: ${count1}`}</title> */}
+      <div id="page_title" style={styles.title}>
+        Effekt-Labor
+      </div>
       <div style={styles.value}>
         Counter 1: {count1} ({parity})
       </div>

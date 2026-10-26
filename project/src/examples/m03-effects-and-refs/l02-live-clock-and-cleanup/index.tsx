@@ -28,14 +28,20 @@ const App = () => {
   const [isRunning, setRunning] = useState(true);
 
   useEffect(() => {
-    if (!isRunning) return;
+    // console.log("new timer was created");
+    let timerId = undefined;
 
-    const timerId = window.setInterval(() => {
-      console.log("Tick");
-      setNow(new Date());
-    }, 1000);
+    if (isRunning) {
+      timerId = setInterval(() => {
+        console.log("Tick");
+        setNow(new Date());
+      }, 1000);
+    }
 
-    return () => window.clearInterval(timerId);
+    return () => {
+      // console.log("old timer was cleared");
+      timerId && clearInterval(timerId);
+    };
   }, [isRunning]);
 
   return (
@@ -44,8 +50,16 @@ const App = () => {
       <div style={styles.time} onClick={() => setRunning(false)}>
         {now.toLocaleTimeString("de-DE")}
       </div>
-      <button style={styles.btn} onClick={() => setRunning(true)} disabled={isRunning}>
+      <button
+        style={styles.btn}
+        onClick={() => setRunning(true)}
+        disabled={isRunning}
+      >
         Restart
+      </button>
+
+      <button onClick={() => setRunning(!isRunning)}>
+        is Running: {String(isRunning)}
       </button>
     </div>
   );

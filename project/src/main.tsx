@@ -6,5 +6,5 @@ import Launcher from "./launcher/Launcher";
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <Launcher />
-  </StrictMode>,
+  </StrictMode>
 );

@@ -3,6 +3,13 @@ const obj = {
   age: 20,
 };
 
-const ob2 = { ...obj };
+const obj2 = { ...obj };
 
-console.log(obj.name == ob2.name);
+obj2.name = "TEST_OVERWRITE";
+
+console.log(obj2 == obj);
+
+console.log(obj, obj2);
+// const ob2 = { ...obj };
+
+// console.log(obj.name == ob2.name);

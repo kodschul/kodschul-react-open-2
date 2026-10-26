@@ -5,71 +5,96 @@ const styles = {
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    justifyContent: "center",
-    gap: 16,
     minHeight: "100vh",
+    backgroundColor: "darkblue",
     color: "white",
+    paddingTop: 50,
   },
-  secs: { fontSize: 100, fontWeight: "bold" },
-  input: { fontSize: 30, width: 120, padding: 8 },
+  title: { fontSize: 30, fontWeight: "bold" },
+  time: { padding: "30px 0", fontSize: 100, cursor: "pointer" },
   btn: {
-    padding: "10px 20px",
+    padding: 15,
     border: "2px solid white",
     background: "transparent",
     color: "white",
     cursor: "pointer",
-    fontSize: 20,
   },
 } satisfies Record<string, CSSProperties>;
 
+// Stufe c: Start und Stopp laufen über State. Ändert sich isRunning, räumt React den
+// alten Effekt per Cleanup auf und führt den Effekt mit dem neuen Wert erneut aus.
+
+let GLOBAL_START_TIME = null;
+let GLOBAL_END_TIME = null;
+
 const App = () => {
-  const [inputSecs, setInputSecs] = useState(10);
-  const [secsLeft, setSecsLeft] = useState(10);
+  const [startTimeSecs, setStartTimeSecs] = useState<number | undefined>(
+    undefined
+  );
+
   const [isRunning, setRunning] = useState(false);
+  const [reactionTime, setReactionTime] = useState(0);
 
-  // Abgeleitete Werte: Sie ergeben sich aus State und brauchen weder State noch Effekt
-  const isExpired = secsLeft === 0;
-  const isTicking = isRunning && secsLeft > 0;
-
-  // Ein Effekt für das Ticken. Erreicht secsLeft 0, wird isTicking false:
-  // React räumt das Intervall per Cleanup auf, ein "Stopp bei 0"-Effekt ist unnötig.
   useEffect(() => {
-    if (!isTicking) return;
+    let timerId = null;
+    if (isRunning) {
+      const randomWaitMs = (Math.random() * 2 + 2.5) * 1000;
 
-    const timerId = window.setInterval(() => {
-      setSecsLeft((prev) => prev - 1); // funktionales Update: immer der aktuelle Wert
-    }, 1000);
+      timerId = setTimeout(() => {
+        GLOBAL_START_TIME = new Date();
+        setStartTimeSecs(new Date().getTime());
+      }, randomWaitMs);
+    }
 
-    return () => window.clearInterval(timerId);
-  }, [isTicking]);
+    return () => {
+      // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+      timerId && clearTimeout(timerId);
+    };
+  }, [isRunning]);
 
-  const start = () => {
-    setSecsLeft(inputSecs);
-    setRunning(true);
+  const isWaitingForGreen = isRunning && startTimeSecs == undefined;
+
+  const startGame = () => setRunning(true);
+
+  const handleUserClick = () => {
+    GLOBAL_END_TIME = new Date();
+    if (isWaitingForGreen) {
+      // user pressed too early
+      setReactionTime(-1);
+      setRunning(false);
+    } else {
+      const timeNow = new Date().getTime();
+
+      console.log(
+        "real_val:",
+        GLOBAL_END_TIME.getTime() - GLOBAL_START_TIME.getTime()
+      );
+      setReactionTime(timeNow - (startTimeSecs || 0));
+    }
+    // setRunning(false);
   };
 
+  const displayText = !isRunning
+    ? "Press anywhere to start"
+    : isWaitingForGreen
+    ? "Please wait for green :)"
+    : reactionTime < 0
+    ? "You pressed too early, you loose!"
+    : reactionTime == 0
+    ? "click me :)"
+    : `Your reaction time is ${reactionTime} ms `;
+
   return (
-    <div style={{ ...styles.container, backgroundColor: isExpired ? "red" : "darkblue" }}>
-      <div style={styles.secs}>{secsLeft}</div>
-      <input
-        style={styles.input}
-        type="number"
-        min={0}
-        value={inputSecs}
-        onChange={(e) => setInputSecs(Math.max(0, e.target.valueAsNumber || 0))}
-      />
-      <div style={{ display: "flex", gap: 12 }}>
-        <button style={styles.btn} onClick={start}>
-          Start
-        </button>
-        <button style={styles.btn} onClick={() => setRunning(false)}>
-          Stop
-        </button>
-        {/* Erweiterung: Fortsetzen ohne Zurücksetzen */}
-        <button style={styles.btn} onClick={() => setRunning(true)} disabled={isRunning}>
-          Fortsetzen
-        </button>
-      </div>
+    <div
+      style={{
+        ...styles.container,
+        backgroundColor: !isWaitingForGreen && isRunning ? "green" : "darkblue",
+      }}
+      onClick={isRunning ? handleUserClick : startGame}
+    >
+      <div style={styles.title}>Reaction Game</div>
+
+      <div style={styles.time}>{displayText}</div>
     </div>
   );
 };

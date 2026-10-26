@@ -1,15 +1,69 @@
-import { useState, type CSSProperties } from "react";
+import { useEffect, useRef, useState, type CSSProperties } from "react";
 
 // Fehlerbild: map ohne key. Die Konsole warnt: Each child in a list should have a unique "key" prop.
 const App = () => {
-  const [todos] = useState(["essen", "trinken", "coden"]);
+  const [todos, setTodos] = useState(["essen", "trinken", "coden"]);
+  const [inputValue, setInputValue] = useState("");
+
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    inputRef?.current?.focus?.();
+  }, []);
+
+  useEffect(() => {
+    if (todos.length > 4) {
+      setTodos([]);
+    }
+  }, [todos]);
+
+  const isInputEmpty = inputValue?.trim?.()?.length < 1;
+  const addNewItem = () => {
+    if (isInputEmpty) {
+      return;
+    }
+
+    setTodos([...todos, inputValue.trim()]);
+    setInputValue("");
+  };
+
+  const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
+      addNewItem();
+    }
+  };
+
+  const removeTodo = (todoText: string, todoIndex: number) => {
+    setTodos(todos.filter((x, i) => !(todoIndex == i && todoText == x)));
+  };
 
   return (
     <main style={styles.container}>
       <h1 style={styles.title}>Todo App (ohne key)</h1>
+      <input
+        ref={inputRef}
+        placeholder="Value"
+        type="text"
+        value={inputValue}
+        onKeyDown={handleKeyDown}
+        onChange={(e) => setInputValue(e.target.value)}
+      />
+      <button disabled={isInputEmpty} onClick={addNewItem}>
+        Add new item
+      </button>
       <ul style={styles.list}>
-        {todos.map((todo) => (
-          <li>{todo}</li>
+        {todos.map((todo, i) => (
+          <li
+            onClick={() => removeTodo(todo, i)}
+            style={{
+              backgroundColor: "white",
+              color: "black",
+              margin: 10,
+              padding: 10,
+            }}
+          >
+            {todo}
+          </li>
         ))}
       </ul>
     </main>

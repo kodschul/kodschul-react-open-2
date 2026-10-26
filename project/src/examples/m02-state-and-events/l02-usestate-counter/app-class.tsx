@@ -13,9 +13,18 @@ class App extends Component<object, State> {
 
   render() {
     return (
-      <main style={{ padding: 32, minHeight: "100vh", backgroundColor: "darkblue", color: "white" }}>
+      <main
+        style={{
+          padding: 32,
+          minHeight: "100vh",
+          backgroundColor: "darkblue",
+          color: "white",
+        }}
+      >
         <h1>Counter App (Klassenkomponente)</h1>
-        <div style={{ fontSize: 40, fontWeight: "bold" }}>{this.state.count}</div>
+        <div style={{ fontSize: 40, fontWeight: "bold" }}>
+          {this.state.count}
+        </div>
         <button onClick={this.handleCountUp}>+</button>
       </main>
     );
