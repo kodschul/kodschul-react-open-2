@@ -12,14 +12,24 @@ const inlineButton = {
 
 // Derselbe Button auf drei Wegen. Inline-Styles kennen kein :hover.
 const App = () => {
+  let isTrue = true;
   return (
-    <div className="flex min-h-screen flex-col items-center gap-6 p-8">
-      <h1 className="text-2xl font-bold">Styling-Wege im Vergleich</h1>
-      <button style={inlineButton}>Inline-Style</button>
-      <button className={styles.button}>CSS Module</button>
-      <button className="cursor-pointer rounded-md bg-blue-600 px-4 py-2 text-white hover:bg-blue-700">
-        Tailwind
-      </button>
+    <div className=" flex-1 flex min-h-screen min-w-screen bg-indigo-400 items-center justify-center  ">
+      <div
+        className={
+          isTrue ? "text-white md:text-[#aef] text-2xl font-thin  " : ""
+        }
+      >
+        Hi there!
+      </div>
+
+      <div
+        className={`text-white md:text-[#aef] text-2xl font-thin ${
+          isTrue ? " bg-red-200 " : "bg-yellow-200"
+        }  `}
+      >
+        Hi there!
+      </div>
     </div>
   );
 };

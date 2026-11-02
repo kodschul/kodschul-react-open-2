@@ -23,7 +23,7 @@ const App = () => {
   } = useForm<FormValues>({
     resolver: zodResolver(schema),
     // Erste Prüfung beim Verlassen eines Feldes, danach bei jeder Eingabe.
-    mode: "onTouched",
+    mode: "onSubmit",
   });
 
   // handleSubmit ruft die Funktion nur bei gültigen Werten auf und verhindert den Seiten-Reload.
@@ -43,13 +43,21 @@ const App = () => {
         <label className="block text-sm font-medium">
           Benutzername
           <input className={inputClass} type="text" {...register("username")} />
-          {errors.username && <p className={errorClass}>{errors.username.message}</p>}
+          {errors.username && (
+            <p className={errorClass}>{errors.username.message}</p>
+          )}
         </label>
 
         <label className="block text-sm font-medium">
           Passwort
-          <input className={inputClass} type="password" {...register("password")} />
-          {errors.password && <p className={errorClass}>{errors.password.message}</p>}
+          <input
+            className={inputClass}
+            type="password"
+            {...register("password")}
+          />
+          {errors.password && (
+            <p className={errorClass}>{errors.password.message}</p>
+          )}
         </label>
 
         <label className="block text-sm font-medium">

@@ -1,24 +1,27 @@
-import { beforeEach, describe, expect, it } from "vitest";
+import { beforeEach, beforeAll, describe, expect, it } from "vitest";
 import Calculator from "./m09-l03-calculator";
 
 describe("Calculator", () => {
-  let calculator: Calculator;
+  const calc = new Calculator();
+
+  beforeAll(() => {
+    console.log("comes once: before all ");
+  });
 
   beforeEach(() => {
-    calculator = new Calculator();
+    calc.reset();
   });
 
-  it("adds", () => {
-    calculator.add(2);
-    expect(calculator.ans()).toBe(2);
+  it("can add", () => {
+    calc.add(10);
+    calc.add(20);
+    expect(calc.ans()).toBe(30);
   });
 
-  it("adds and subtracts", () => {
-    calculator.add(2);
-    calculator.sub(1);
-    expect(calculator.ans()).toBe(1);
-  });
+  it("can add negatives", () => {
+    calc.add(-100);
+    calc.add(-100);
 
-  // TODO: Test für reset() schreiben und it.todo durch it ersetzen
-  it.todo("resets to 0");
+    expect(calc.ans()).toBe(-200);
+  });
 });

@@ -7,6 +7,11 @@ class Calculator {
     return this.value;
   }
 
+  mul(x: number): number {
+    this.value *= x;
+    return this.value;
+  }
+
   sub(x: number): number {
     this.value -= x;
     return this.value;

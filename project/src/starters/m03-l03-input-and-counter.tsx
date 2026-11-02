@@ -23,8 +23,6 @@ const styles = {
   },
 } satisfies Record<string, CSSProperties>;
 
-// TODO 1: Ref für das Eingabefeld anlegen, anhängen und im Effekt fokussieren.
-// TODO 2: Ref als Klickzähler anlegen, im Klick-Handler erhöhen und dort loggen.
 const App = () => {
   return (
     <div style={styles.container}>

@@ -14,7 +14,10 @@ const Counter = () => {
         {count}
       </div>
       <div className="flex gap-2">
-        <button className="rounded border px-4 py-2 hover:bg-gray-100" onClick={() => setCount(count + 1)}>
+        <button
+          className="rounded border px-4 py-2 hover:bg-gray-100"
+          onClick={() => setCount(count + 1)}
+        >
           +
         </button>
         <button
@@ -23,7 +26,10 @@ const Counter = () => {
         >
           –
         </button>
-        <button className="rounded border px-4 py-2 hover:bg-gray-100" onClick={() => setCount(START_VALUE)}>
+        <button
+          className="rounded border px-4 py-2 hover:bg-gray-100"
+          onClick={() => setCount(START_VALUE)}
+        >
           Reset
         </button>
       </div>

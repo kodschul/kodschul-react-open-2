@@ -1,38 +1,23 @@
-import { useState, type CSSProperties } from "react";
+import { type CSSProperties } from "react";
+import { useCounter } from "./useCounter";
 
 // Counter mit State: setCount löst ein neues Rendern aus, die Anzeige folgt dem Wert.
 const App = () => {
+  const { count, inc, dec, reset } = useCounter();
   console.warn("RENDERING");
-  const [count, setCount] = useState(100);
-
-  const handleCountUp = () => {
-    setCount(count + 1);
-    console.warn("UP", count); // zeigt noch den alten Wert: count ist ein Schnappschuss dieses Renders
-  };
-
-  const handleCountDown = () => {
-    if (count > 0) {
-      setCount(count - 1);
-    }
-    console.warn("DOWN", count);
-  };
-
-  const handleReset = () => {
-    setCount(100);
-  };
 
   return (
     <main style={styles.container}>
-      <h1 style={styles.title}>Counter App</h1>
+      <h1 style={styles.title}>Counter App. USE-HOOK</h1>
       <div style={styles.value}>{count}</div>
       <div style={styles.row}>
-        <button style={styles.button} onClick={handleCountUp}>
+        <button style={styles.button} onClick={inc}>
           +
         </button>
-        <button style={styles.button} onClick={handleCountDown}>
+        <button style={styles.button} onClick={dec}>
           –
         </button>
-        <button style={styles.button} onClick={handleReset}>
+        <button style={styles.button} onClick={reset}>
           Reset
         </button>
       </div>

@@ -1,17 +1,23 @@
 import { useState } from "react";
-import { QueryClient, QueryClientProvider, useQuery } from "@tanstack/react-query";
+import {
+  QueryClient,
+  QueryClientProvider,
+  useQuery,
+} from "@tanstack/react-query";
 import axios from "axios";
 import { API_BASE_URL, type CharacterPage } from "../../../shared/character";
 
 const api = axios.create({ baseURL: API_BASE_URL, timeout: 10000 });
 
 // DEMO-SCHALTER: true simuliert ein langsames Netz (2 Sekunden Verzögerung pro Anfrage).
-const SLOW_DEMO = false;
+const SLOW_DEMO = true;
 
 // Die Query-Funktion enthält nur den Request; Laden, Fehler und Cache übernimmt useQuery.
 const fetchCharacters = async (page: number): Promise<CharacterPage> => {
   if (SLOW_DEMO) await new Promise((resolve) => setTimeout(resolve, 2000));
-  const response = await api.get<CharacterPage>("/character", { params: { page } });
+  const response = await api.get<CharacterPage>("/character", {
+    params: { page },
+  });
   return response.data;
 };
 
@@ -46,11 +52,13 @@ const Gallery = () => {
         </button>
       </div>
       <p className="mb-4 font-mono text-sm">
-        isPending: {String(isPending)} · isLoading: {String(isLoading)} · isFetching:{" "}
-        {String(isFetching)}
+        isPending: {String(isPending)} · isLoading: {String(isLoading)} ·
+        isFetching: {String(isFetching)}
       </p>
       {isPending && <p>Lade …</p>}
-      {error && <p className="text-red-600">Fehler beim Laden: {error.message}</p>}
+      {error && (
+        <p className="text-red-600">Fehler beim Laden: {error.message}</p>
+      )}
       <div className="grid grid-cols-2 gap-4 md:grid-cols-4 lg:grid-cols-5">
         {data?.results.map((character) => (
           <div key={character.id}>

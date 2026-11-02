@@ -1,11 +1,20 @@
-// Arbeitsbereich für die Übungen: Diese Datei läuft unter http://localhost:5173/playground.
-// Jede Übung beginnt mit einer Starter-Datei aus dem Handout, die hier eingebunden wird.
+import React from "react";
+import MainFloor from "./MainFloor";
+import UserControlBar from "./UserControlBar";
+import OfficeControlBar from "./OfficeControlBar";
+
 const App = () => {
   return (
-    <main className="p-8">
-      <h1 className="text-3xl font-bold">Playground</h1>
-      <p>Änderungen an dieser Datei erscheinen sofort im Browser.</p>
-    </main>
+    <div className=" bg-gray-200 min-h-screen min-w-screen flex flex-row p-12 space-x-12 ">
+      <div className="flex flex-3">
+        <MainFloor />
+      </div>
+
+      <div className="flex flex-1 flex-col space-y-4">
+        <UserControlBar />
+        <OfficeControlBar />
+      </div>
+    </div>
   );
 };
 
